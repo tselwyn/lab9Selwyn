@@ -28,7 +28,7 @@ private:
 	int boundx;
 	int boundy;
 	int score;
-	ALLEGRO_BITMAP* images[6]; // Tyler Selwyn - array for kirby damage states
+	ALLEGRO_BITMAP* images[5]; // Tyler Selwyn - array for kirby damage states
 	int damageIndex; // Tyler Selwyn - tracks which kirby image to display
 };
 #endif
