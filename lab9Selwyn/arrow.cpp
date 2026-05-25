@@ -15,10 +15,8 @@ Arrow::~Arrow()
 }
 void Arrow::DrawArrow()
 {
-
 	if (live)
 		al_draw_rotated_bitmap(image, al_get_bitmap_width(image) / 2, al_get_bitmap_height(image) / 2, x, y, 90, 0);
-
 }
 void Arrow::FireArrow(player& Player)
 {
@@ -38,7 +36,7 @@ void Arrow::UpdateArrow(int WIDTH)
 			live = false;
 	}
 }
-void Arrow::CollideArrow(ghost ghosts[], int cSize)
+void Arrow::CollideArrow(ghost ghosts[], int cSize, player& Player)
 {
 	if (live)
 	{
@@ -53,9 +51,9 @@ void Arrow::CollideArrow(ghost ghosts[], int cSize)
 				{
 					live = false;
 					ghosts[j].setLive(false);
+					Player.addScore();
 				}
 			}
 		}
 	}
-
 }
