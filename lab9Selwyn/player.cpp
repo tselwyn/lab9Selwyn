@@ -3,22 +3,21 @@
 #include <allegro5\allegro_image.h>
 #include "player.h"
 
-// Tyler Selwyn - destructor destroys all 6 kirby bitmaps
+// Tyler Selwyn - destructor destroys all 5 kirby bitmaps
 player::~player()
 {
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < 5; i++)
 		al_destroy_bitmap(images[i]);
 }
 
-// Tyler Selwyn - constructor loads all kirby images into array
+// Tyler Selwyn - constructor loads all kirby damage images into array
 player::player(int HEIGHT)
 {
 	images[0] = al_load_bitmap("Kirby.png");   // full health
-	images[1] = al_load_bitmap("kirby0.png");  // damage state 1
-	images[2] = al_load_bitmap("kirby1.png");  // damage state 2
-	images[3] = al_load_bitmap("kirby2.png");  // damage state 3
-	images[4] = al_load_bitmap("kirby3.png");  // damage state 4
-	images[5] = al_load_bitmap("kirby4.png");  // damage state 5
+	images[1] = al_load_bitmap("kirby1.png");  // damage state 1
+	images[2] = al_load_bitmap("kirby2.png");  // damage state 2
+	images[3] = al_load_bitmap("kirby3.png");  // damage state 3
+	images[4] = al_load_bitmap("kirby4.png");  // damage state 4
 	damageIndex = 0;
 	x = 20;
 	y = HEIGHT / 2;
