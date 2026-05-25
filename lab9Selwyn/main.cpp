@@ -78,7 +78,7 @@ int main(void)
 			for (int i = 0;i < NUM_ghostS;i++)
 				ghosts[i].Updateghost();
 			for (int i = 0;i < NUM_ArrowS;i++)
-				Arrows[i].CollideArrow(ghosts, NUM_ghostS);
+				Arrows[i].CollideArrow(ghosts, NUM_ghostS, myPlayer);
 			for (int i = 0;i < NUM_ghostS;i++)
 				ghosts[i].Collideghost(myPlayer);
 		}

@@ -5,6 +5,8 @@ class player
 public:
 	player(int HEIGHT);
 	~player();
+	void addScore() { score++; }
+	int getScore() { return score; }
 	void DrawPlayer();
 	void MoveUp();
 	void MoveDown(int HEIGHT);
