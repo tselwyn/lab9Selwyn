@@ -36,6 +36,8 @@ void Arrow::UpdateArrow(int WIDTH)
 			live = false;
 	}
 }
+
+// Tyler Selwyn - checks if arrow hits a ghost, kills ghost and adds to player score
 void Arrow::CollideArrow(ghost ghosts[], int cSize, player& Player)
 {
 	if (live)
@@ -51,7 +53,7 @@ void Arrow::CollideArrow(ghost ghosts[], int cSize, player& Player)
 				{
 					live = false;
 					ghosts[j].setLive(false);
-					Player.addScore();
+					Player.addScore(); // Tyler Selwyn - increment score when ghost killed
 				}
 			}
 		}

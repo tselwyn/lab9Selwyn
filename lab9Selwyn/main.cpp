@@ -7,6 +7,8 @@
 #include "ghost.h"
 #include "Arrow.h"
 
+// Tyler Selwyn - Lab 9 Side Shooter with damage images, score, HUD, and game over
+
 int main(void)
 {
 
@@ -17,19 +19,14 @@ int main(void)
 	enum KEYS { UP, DOWN, LEFT, RIGHT, SPACE };
 	bool keys[5] = { false, false, false, false, false };
 
-
-	//primitive variable
 	bool done = false;
 	bool redraw = true;
 	const int FPS = 60;
 
-
-	//Allegro variables
 	ALLEGRO_DISPLAY* display = NULL;
 	ALLEGRO_EVENT_QUEUE* event_queue = NULL;
 	ALLEGRO_TIMER* timer = NULL;
 
-	//Initialization Functions
 	if (!al_init())
 		return -1;
 
@@ -40,11 +37,11 @@ int main(void)
 
 	al_install_keyboard();
 	al_init_image_addon();
-	al_init_font_addon();
+	al_init_font_addon(); // Tyler Selwyn - need font addon for HUD text
 
-	ALLEGRO_FONT* font = al_create_builtin_font();
+	ALLEGRO_FONT* font = al_create_builtin_font(); // Tyler Selwyn - built in font for displaying stats
 
-	//object variables
+	// Tyler Selwyn - create game objects
 	player myPlayer(HEIGHT);
 	Arrow Arrows[NUM_ArrowS];
 	ghost ghosts[NUM_ghostS];
@@ -87,6 +84,7 @@ int main(void)
 			for (int i = 0;i < NUM_ghostS;i++)
 				ghosts[i].Collideghost(myPlayer);
 
+			// Tyler Selwyn - check if kirby is out of lives and end the game
 			if (myPlayer.getLives() <= 0)
 			{
 				al_clear_to_color(al_map_rgb(0, 0, 0));
@@ -96,12 +94,13 @@ int main(void)
 				sprintf_s(gameOver, "GAME OVER!");
 				sprintf_s(finalScore, "Ghosts Killed: %d", myPlayer.getScore());
 
+				// Tyler Selwyn - display final stats centered on screen
 				al_draw_text(font, al_map_rgb(255, 0, 0), WIDTH / 2, HEIGHT / 2 - 30, ALLEGRO_ALIGN_CENTRE, gameOver);
 				al_draw_text(font, al_map_rgb(255, 255, 255), WIDTH / 2, HEIGHT / 2, ALLEGRO_ALIGN_CENTRE, finalScore);
 				al_draw_text(font, al_map_rgb(255, 255, 255), WIDTH / 2, HEIGHT / 2 + 30, ALLEGRO_ALIGN_CENTRE, "Thanks for playing!");
 
 				al_flip_display();
-				al_rest(5.0);
+				al_rest(5.0); // Tyler Selwyn - wait 5 seconds before closing
 				done = true;
 			}
 		}
@@ -170,6 +169,7 @@ int main(void)
 			for (int i = 0;i < NUM_ghostS;i++)
 				ghosts[i].Drawghost();
 
+			// Tyler Selwyn - HUD showing lives remaining and ghosts killed
 			char livesText[50];
 			char scoreText[50];
 			sprintf_s(livesText, "Lives: %d", myPlayer.getLives());

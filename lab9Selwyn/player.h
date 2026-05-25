@@ -1,12 +1,11 @@
 #ifndef PLAYERH
 #define PLAYERH
+// Tyler Selwyn - Player class for Kirby character
 class player
 {
 public:
 	player(int HEIGHT);
 	~player();
-	void addScore() { score++; }
-	int getScore() { return score; }
 	void DrawPlayer();
 	void MoveUp();
 	void MoveDown(int HEIGHT);
@@ -16,10 +15,11 @@ public:
 	int getBoundY() { return boundy; }
 	int getX() { return x; }
 	int getY() { return y; }
-	int getDamageIndex() { return damageIndex; }
 	int getLives() { return lives; }
-	void removeLife() { lives--; damageIndex++; }
-	void removeLife() { if (lives > 0) { lives--; damageIndex++; } }
+	int getScore() { return score; }
+	int getDamageIndex() { return damageIndex; }
+	void addScore() { score++; }
+	void removeLife() { if (lives > 0) { lives--; damageIndex++; } } // Tyler Selwyn - safety check to prevent array out of bounds
 private:
 	int x;
 	int y;
@@ -28,7 +28,7 @@ private:
 	int boundx;
 	int boundy;
 	int score;
-	ALLEGRO_BITMAP* images[6];
-	int damageIndex;
+	ALLEGRO_BITMAP* images[6]; // Tyler Selwyn - array for kirby damage states
+	int damageIndex; // Tyler Selwyn - tracks which kirby image to display
 };
 #endif
