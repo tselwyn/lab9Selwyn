@@ -19,6 +19,7 @@ public:
 	int getDamageIndex() { return damageIndex; }
 	int getLives() { return lives; }
 	void removeLife() { lives--; damageIndex++; }
+	void removeLife() { if (lives > 0) { lives--; damageIndex++; } }
 private:
 	int x;
 	int y;
