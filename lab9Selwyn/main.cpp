@@ -86,6 +86,24 @@ int main(void)
 				Arrows[i].CollideArrow(ghosts, NUM_ghostS, myPlayer);
 			for (int i = 0;i < NUM_ghostS;i++)
 				ghosts[i].Collideghost(myPlayer);
+
+			if (myPlayer.getLives() <= 0)
+			{
+				al_clear_to_color(al_map_rgb(0, 0, 0));
+
+				char gameOver[50];
+				char finalScore[50];
+				sprintf_s(gameOver, "GAME OVER!");
+				sprintf_s(finalScore, "Ghosts Killed: %d", myPlayer.getScore());
+
+				al_draw_text(font, al_map_rgb(255, 0, 0), WIDTH / 2, HEIGHT / 2 - 30, ALLEGRO_ALIGN_CENTRE, gameOver);
+				al_draw_text(font, al_map_rgb(255, 255, 255), WIDTH / 2, HEIGHT / 2, ALLEGRO_ALIGN_CENTRE, finalScore);
+				al_draw_text(font, al_map_rgb(255, 255, 255), WIDTH / 2, HEIGHT / 2 + 30, ALLEGRO_ALIGN_CENTRE, "Thanks for playing!");
+
+				al_flip_display();
+				al_rest(5.0);
+				done = true;
+			}
 		}
 		else if (ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
 		{
@@ -171,5 +189,3 @@ int main(void)
 	system("Pause");
 	return 0;
 }
-
-
